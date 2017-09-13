@@ -25,12 +25,9 @@ public class MainActivity extends AppCompatActivity {
         listData = new ArrayList<DataModel>();
         ListView lview = (ListView) findViewById(R.id.listview);
         lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, "The position is:" + i, Toast.LENGTH_SHORT).show();
             }
         });
         final ListAdapter adapter = new ListAdapter(this, listData);
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listData.add( new DataModel("2", "Orange", "Fruits", "100"));
+                listData.add( new DataModel("", "", "", ""));
                 adapter.notifyDataSetChanged();
             }
         });
@@ -54,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
         DataModel item1, item2, item3, item4, item5;
 
-        item1 = new DataModel("1", "Apple", "Fruits", "200");
+        item1 = new DataModel("", "", "", "");
         listData.add(item1);
 
-        item2 = new DataModel("2", "Orange ", "Fruits", "100");
+        item2 = new DataModel("", " ", "", "");
         listData.add(item2);
 
     }

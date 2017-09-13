@@ -1,6 +1,8 @@
 package com.texpo.myapplication;
 
 import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +43,10 @@ public class ListAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView desc;
+        EditText desc;
         TextView sft;
         TextView amount;
-
+        TextView xSign;
         EditText height;
         EditText width;
         EditText qty;
@@ -55,14 +57,15 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder;
+        final ViewHolder holder;
         LayoutInflater inflater = activity.getLayoutInflater();
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_view, null);
             holder = new ViewHolder();
-            holder.desc = (TextView) convertView.findViewById(R.id.desc);
+            holder.desc = (EditText) convertView.findViewById(R.id.desc);
             holder.sft = (TextView) convertView.findViewById(R.id.SFT);
+            holder.xSign = (TextView) convertView.findViewById(R.id.xSign);
             holder.amount = (TextView) convertView.findViewById(R.id.amount);
             holder.height = (EditText) convertView.findViewById(R.id.height);
             holder.width = (EditText) convertView.findViewById(R.id.width);
@@ -78,6 +81,20 @@ public class ListAdapter extends BaseAdapter {
         holder.desc.setText(item.getProduct().toString());
         holder.amount.setText(item.getPrice().toString());
         holder.sft.setText(item.getPrice().toString());
+
+        holder.height.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                holder.amount.setText(holder.height.getText().toString());
+            }
+        });
 
         return convertView;
     }
