@@ -2,31 +2,68 @@ package com.texpo.myapplication;
 
 public class DataModel {
 
-    private String sNo;
-    private String product;
-    private String category;
-    private String price;
+    String desc;
+    String height;
+    String width;
+    String qty;
 
-    public DataModel(String sNo, String product, String category, String price) {
-        this.sNo = sNo;
-        this.product = product;
-        this.category = category;
-        this.price = price;
+    public String getDesc() { return desc; }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public String getsNo() {
-        return sNo;
+    public String getHeight() {
+        return height;
     }
 
-    public String getProduct() {
-        return product;
+    public void setHeight(String height) {
+        this.height = height;
     }
 
-    public String getCategory() {
-        return category;
+    public String getWidth() {
+        return width;
     }
 
-    public String getPrice() {
-        return price;
+    public void setWidth(String width) {
+        this.width = width;
     }
+
+    public String getQty() {
+        return qty;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
+    }
+
+    public String getSFT() {
+        return SFT;
+    }
+
+    public void setSFT(String SFT) {
+        this.SFT = SFT;
+    }
+
+    public String getRates() {
+        return rates;
+    }
+
+    public void setRates(String rates) {
+        this.rates = rates;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    String SFT;
+    String rates;
+    String amount;
+
+
 }
