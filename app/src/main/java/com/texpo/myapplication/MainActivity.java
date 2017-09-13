@@ -1,5 +1,6 @@
 package com.texpo.myapplication;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<DataModel> listData;
-
+    private BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,29 @@ public class MainActivity extends AppCompatActivity {
 
         listData = new ArrayList<DataModel>();
         ListView lview = (ListView) findViewById(R.id.listview);
-        lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        View bottomSheet = findViewById( R.id.botSheet );
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, "The position is:" + i, Toast.LENGTH_SHORT).show();
+            public void onStateChanged(View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    mBottomSheetBehavior.setPeekHeight(0);
+                }
+            }
+
+            @Override
+            public void onSlide(View bottomSheet, float slideOffset) {
+            }
+        });
+
+        lview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                return false;
             }
         });
         final ListAdapter adapter = new ListAdapter(this, listData);
